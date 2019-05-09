@@ -1,0 +1,29 @@
+---
+# global variables:
+
+# ((this_directory))
+# ((date))
+
+# ((ae_proj_directory))
+# ((ae_proj_directory_name))
+# ((ae_proj_name))
+# ((ae_proj_date))
+# ((ae_comp_name))
+
+date_format:
+ date:                "YY-MM"
+ ae_proj_date:        "YY-MM-DD"
+
+render:
+ render_dir:          "../../Render/((ae_proj_name))"
+ render_name:         "((date))_((ae_proj_name))"
+
+presets:
+ presets_directory: "((this_directory))"
+
+ 1:
+  preset_suffix:    "@draft"
+  preset_name:      "draft"
+ 2:
+  preset_suffix:     "@draft"
+  preset_name:       "H264"
