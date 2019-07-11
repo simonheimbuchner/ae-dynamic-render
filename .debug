@@ -5,4 +5,9 @@
             <Host Name="AEFT" Port="8080"/>
         </HostList>
     </Extension>
+    <Extension Id="com.dynamicrender.settings">
+        <HostList>
+            <Host Name="AEFT" Port="8081"/>
+        </HostList>
+    </Extension>
 </ExtensionList>

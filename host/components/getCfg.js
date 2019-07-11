@@ -202,6 +202,15 @@ formatConfigData.prototype.forRenderQueue = function( ConfigData ) {
       return ConfigDataOutput;
 
 }
+
+formatConfigData.prototype.forSettings = function( ConfigData, configFile ) {
+      var ConfigDataOutput = new Object();
+      alert(JSON.stringify(ConfigData))
+      ConfigDataOutput[ "configFilePath" ] = configFile.fsName;
+      return ConfigDataOutput;
+
+}
+
 // turns a combination of absolute and relative paths into a whole absolute path
 formatConfigData.prototype.normalizePath = function( path ) {
       // path looks like: "~/Desktop/sub/../Trash"

@@ -6,21 +6,24 @@
   <title>Dynamic Render</title>
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/master.css">
-  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/settings.css">
 </head>
 
 <body>
 
   <!-- 2) A button -->
   <main>
-    <button class="hero" id="btn-settings">Settings</button>
-    <button class="hero" id="btn-render">Render</button>
+    <div id="configFile">
+        <label for="configFile">Config: </label>
+        <input type="text" id="configFileInput" readonly name="configFile" value="">
+    </div>
+
   </main>
 
 
   <!-- 3) Add your script dependencies here, including CEP's CSInterface.js library -->
   <script type="text/javascript" src="js/lib/CSInterface.js"></script>
-  <script type="text/javascript" src="js/index.js"></script>
+  <script type="text/javascript" src="js/settings.js"></script>
 </body>
 
 </html>

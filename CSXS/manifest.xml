@@ -2,6 +2,7 @@
 <ExtensionManifest ExtensionBundleId="com.dynamicrender" ExtensionBundleName="Dynamic Render" ExtensionBundleVersion="1.0.0" Version="8.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ExtensionList>
     <Extension Id="com.dynamicrender.panel" Version="1.0.0"/>
+    <Extension Id="com.dynamicrender.settings" Version="1.0.0"/>
   </ExtensionList>
   <ExecutionEnvironment>
     <HostList>
@@ -32,6 +33,29 @@
             <Size>
               <Height>500</Height>
               <Width>350</Width>
+            </Size>
+          </Geometry>
+          <Icons/>
+        </UI>
+      </DispatchInfo>
+    </Extension>
+
+    <Extension Id="com.dynamicrender.settings">
+      <DispatchInfo>
+        <Resources>
+          <MainPath>./client/settings.html</MainPath>
+          <ScriptPath>./host/index.jsx</ScriptPath>
+          <CEFCommandLine/>
+        </Resources>
+        <Lifecycle>
+          <AutoVisible>true</AutoVisible>
+        </Lifecycle>
+        <UI>
+          <Type>ModalDialog</Type>
+          <Geometry>
+            <Size>
+              <Height>350</Height>
+              <Width>500</Width>
             </Size>
           </Geometry>
           <Icons/>

@@ -12,8 +12,4 @@
 
 #include "components/sendToAME.js"
 
-#include "components/settings.js"
-
-#include "ui/render.js"
-
-#include "ui/settings.js"
+#include "eventHandlers.js"
