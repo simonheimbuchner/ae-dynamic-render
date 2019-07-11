@@ -10,48 +10,8 @@
 
 #include "app/components/renderToAME.js";
 
-#include "app/components/sendToAME.jsx"
+#include "app/components/sendToAME.js"
 
+#include "app/components/render.js"
 
-
-function render() {
-      var configFile = new getConfigFile().run();
-      if ( configFile instanceof Error ) {
-            alertError( configFile )
-            return;
-      }
-
-      var ConfigData = new parseConfigData().run( configFile );
-      if ( ConfigData instanceof Error ) {
-            alertError( ConfigData )
-            return;
-      }
-      ConfigData = new formatConfigData().forRenderQueue( ConfigData );
-      if ( ConfigData instanceof Error ) {
-            alertError( ConfigData )
-            return;
-      }
-
-      // returns final parsed JSON Object
-      new renderToAME().run( ConfigData );
-
-}
-
-//render();
-
-( function ScriptLauncher( thisObj ) {
-      #include 'app/ui/buildWindows.js'
-
-      // Build and show the palette
-      var rdslPal = buildUI( thisObj );
-      if ( rdslPal !== null ) {
-            if ( rdslPal instanceof Window ) {
-                  //rdslPal.center();
-                  rdslPal.show();
-            }
-            else {
-                  rdslPal.layout.layout( true );
-            }
-      }
-
-} )( this );
+#include "app/ui/launch.js"
