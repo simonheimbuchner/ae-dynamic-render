@@ -1,0 +1,10 @@
+<ExtensionList>
+       <!-- 1 -->
+       <Extension Id="com.dynamicrender">
+          <HostList>
+
+              <!-- 2 -->
+              <Host Name="AEFT" Port="8888"/>
+           </HostList>
+       </Extension>
+   </ExtensionList>
