@@ -1,0 +1,40 @@
+body {
+  background-color: #232323;
+  box-sizing: border-box;
+  font-size: 12px;
+}
+
+main {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+button, select, input {
+  border: 1px solid;
+  height: 19px;
+}
+
+button.hero {
+  min-height: 30px;
+  width: 100%;
+  font-size: 1em;
+  align-content: stretch;
+  font-weight: 700;
+  color: #2e8fe1;
+  background-color: #232323;
+  text-transform: uppercase;
+}
+
+button.hero:hover {
+  background-color: #2e8fe1;
+  color: #232323;
+}
+
+button#btn-settings {
+  flex: 1;
+}
+button#btn-render {
+  flex: 3;
+}

@@ -1,0 +1,42 @@
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: none;
+	vertical-align: baseline;
+
+}
+
+html, body {
+	width: 100%;
+
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+	cursor: pointer;
+}
+
+b, strong {
+    font-weight: bold;
+}
+
+pre {
+    white-space: pre-wrap;
+}
+
+ul, li, a {
+	list-style: none;
+	text-decoration: none;
+}
+
+button, select {
+    text-transform: none;
+    cursor: pointer;
+}
