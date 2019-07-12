@@ -1,4 +1,6 @@
-function parseConfigData() {}
+function parseConfigData() {
+      this.storageVariableRegex = /\(\((\S+?)\)\)/g;
+}
 
 parseConfigData.prototype.Storage = new Object();
 
@@ -102,7 +104,7 @@ parseConfigData.prototype.loopThoughStorageValues = function( obj ) {
 // receives configFileContent as string
 parseConfigData.prototype.findStorageValueAndConvert = function( str ) {
       // regex will find something like ((variable))
-      var regex = /\(\((\S+?)\)\)/g;
+      var regex = this.storageVariableRegex;
       var Storage = this.Storage;
       try {
             // replace ((variable)) with variable from Storage
@@ -131,7 +133,6 @@ parseConfigData.prototype.convert = function( ConfigData ) {
       var establishStorage = this.establishStorage( ConfigData );
       if ( establishStorage instanceof Error )
             return establishStorage;
-
       try {
             this.loopThoughStorageValues( ConfigData );
       }
@@ -143,9 +144,7 @@ parseConfigData.prototype.convert = function( ConfigData ) {
       return ConfigData;
 };
 
-// opens file from file path, reads it and parses it using YAML Syntax
-// returns valid JSON Object
-parseConfigData.prototype.run = function( configFile ) {
+parseConfigData.prototype.decode = function( configFile ) {
       openConfigFile = configFile.open( 'r', undefined, undefined );
       openConfigFile.encoding = "UTF-8";
       openConfigFile.lineFeed = "Unix"; //convert to UNIX lineFeed
@@ -155,20 +154,28 @@ parseConfigData.prototype.run = function( configFile ) {
             configFileContent = configFile.read();
             configFile.close();
 
+            // other error handling is done by yaml
             // Parse Data
             ConfigData = YAML.decode( configFileContent );
             if ( ConfigData == null ) return new Error( "The config file is empty." )
-            // other error handling is done by yaml
-
-            // convert pseudo variables and prepare for output
-            ConfigData = this.convert( ConfigData );
-            //if(ConfigData instanceof Error) return ConfigData;
 
             return ConfigData;
       }
       else {
             return new Error( 'Failed opening file "' + configFile.fsName + '".' );
       }
+}
+
+// opens file from file path, reads it and parses it using YAML Syntax
+// returns valid JSON Object
+parseConfigData.prototype.run = function( configFile ) {
+      var RawConfigData = this.decode( configFile );
+      // convert pseudo variables and prepare for output
+      ConfigData = this.convert( RawConfigData );
+      //if(ConfigData instanceof Error) return ConfigData;
+
+      return ConfigData;
+
 };
 
 
@@ -204,12 +211,31 @@ formatConfigData.prototype.forRenderQueue = function( ConfigData ) {
 
 }
 
-formatConfigData.prototype.forSettings = function( ConfigData, configFile ) {
+formatConfigData.prototype.forSettings = function( RawConfigData, ConfigData, configFile, storage ) {
       var ConfigDataOutput = new Object();
-    //  alert(JSON.stringify(ConfigData))
+      //ConfigDataOutput[ "RenderData" ] = ConfigData[ "render" ];
       ConfigDataOutput[ "configFilePath" ] = configFile.fsName;
-      return ConfigDataOutput;
+      // regex to find ((variable))
+      var regex = new parseConfigData().storageVariableRegex;
 
+      // splits raw dir and name into arrays, like: "((var))/((var2))" -> "((var))", "/", "((var2))"
+      // RawConfigData[ "render" ] -> RawConfigData[ "render" ]["render_dir"], RawConfigData[ "render" ]["render_name"];
+      var rawRenderDir = RawConfigData[ "render" ][ "render_dir" ].split( regex );
+      var rawRenderName = RawConfigData[ "render" ][ "render_name" ].split( regex );
+
+      function removeEmptyStringsFromArray(el) {
+            return el != "";
+      }
+      // clean up arrays
+      rawRenderDir = rawRenderDir.filter(removeEmptyStringsFromArray)
+      rawRenderName = rawRenderName.filter(removeEmptyStringsFromArray)
+      // save cleaned arrays into ConfigDataOutput)
+      ConfigDataOutput["storageVariableRegex"] = regex.toString();
+      ConfigDataOutput["storageVariables"] = storage;
+      ConfigDataOutput["rawRenderDir"] = rawRenderDir;
+      ConfigDataOutput["rawRenderName"] = rawRenderName;
+
+      return ConfigDataOutput;
 }
 
 // turns a combination of absolute and relative paths into a whole absolute path

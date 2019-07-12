@@ -45,13 +45,21 @@ function openSettingsWindow() {
             return;
       }
       // output: config data as string
-      var ConfigData = new parseConfigData().run( configFile );
+      var RawConfigData = new parseConfigData().decode(configFile);
+      if ( RawConfigData instanceof Error ) {
+            alertError( RawConfigData )
+            return;
+      }
+
+      var ConfigData = new parseConfigData().run(configFile);
       if ( ConfigData instanceof Error ) {
             alertError( ConfigData )
             return;
       }
+
+
       // output: config data as object
-      ConfigData = new formatConfigData().forSettings( ConfigData, configFile );
+      ConfigData = new formatConfigData().forSettings( RawConfigData, ConfigData, configFile, new parseConfigData().Storage );
       if ( ConfigData instanceof Error ) {
             alertError( ConfigData )
             return;
