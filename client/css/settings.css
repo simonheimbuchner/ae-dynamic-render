@@ -1,17 +1,17 @@
-label {
+#configFile label {
   color: #a8a8a8;
   margin-right: 20px;
   text-transform: uppercase;
 }
 
-input {
+#configFile input {
   background-color: #a8a8a8;
   color: #2b2b2b;
   width: 100%;
   border: 0;
   font-family: monospace;
-  padding:10px;
-  box-sizing:border-box;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 #configFile {
@@ -20,4 +20,112 @@ input {
   flex-direction: row;
   padding: 20px;
   box-sizing: border-box;
+}
+
+#pathAssemble {
+  width: 100%;
+  background-color: #2b2b2b;
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+div#pathAssemble .sortable {
+  position: relative;
+  color: #a8a8a8;
+  background-color: transparent;
+  align-self: center;
+  cursor: pointer;
+  margin: 0 5px;
+  border: 1px solid #525252;
+  border-radius: 5px;
+  padding: 8px 30px 7px 20px;
+  height: 19px;
+}
+
+div#pathAssemble .sortable .customText {
+  height: 100%;
+  position: relative;
+}
+
+div#pathAssemble .sortable .delete {
+  cursor: pointer;
+  user-select: none;
+  position: absolute;
+  right: 0;
+  height: 100%;
+  top: 0;
+  width: 8px;
+  padding-top: 8px;
+  padding-right: 6px;
+  color: #525252;
+}
+
+div#pathAssemble .sortable .delete:hover {
+  color: #2e8fe1;
+}
+
+div#pathAssemble .storageVariable {
+  background-color: #232323;
+  user-select: none;
+}
+
+div#pathAssemble .customText {
+  background-color: #2b2b2b;
+  color: #d8d8d8;
+  text-align: center;
+  font-family: monospace;
+}
+
+div#pathAssemble .sortable:hover {
+  background-color: #525252;
+}
+
+.selectVariable {
+  display: block;
+  font-size: 1em;
+  width: 100%;
+  background-color: transparent;
+  color: #d8d8d8;
+  border: 0;
+  margin-top: -1px;
+  letter-spacing: .7px;
+}
+
+.selectVariable::-ms-expand {
+  display: none;
+}
+
+.selectVariable:hover {
+  border-color: #888;
+}
+
+.selectVariable:focus {
+  outline: 0;
+  border: 0;
+}
+
+.selectVariable option {
+  font-size: 1em;
+  color: #d8d8d8;
+  background-color: #2b2b2b;
+  border: 0;
+  padding: 5px;
+}
+.selectVariable option:focus {
+  border: 0;
+}
+
+.selectVariable select:after {
+  position: absolute;
+  content: "y";
+  top: 0px;
+  right: 0px;
+  width: 20px;
+  height: 20px;
+}
+
+.selectVariable select {
+  display: none;
 }

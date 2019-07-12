@@ -14,8 +14,46 @@
   <!-- 2) A button -->
   <main>
     <div id="configFile">
-        <label for="configFile">Config: </label>
-        <input type="text" id="configFileInput" readonly name="configFile" value="">
+      <label for="configFile">Config: </label>
+      <input type="text" id="configFileInput" readonly name="configFile" value="">
+    </div>
+
+    <div id="pathAssemble">
+
+      <span class="sortable">
+        <span contenteditable="true" class="customText"></span>
+        <span contenteditable="false" class="delete">x</span>
+      </span>
+
+      <span class="sortable storageVariable">
+          <select class="selectVariable">
+            <option value="((this_directory))">this_directory</option>
+            <option value="((date))">date</option>
+            <option value="((ae_proj_directory))">ae_proj_directory</option>
+            <option value="((ae_proj_directory))">ae_proj_directory</option>
+            <option value="((ae_proj_directory_name))">ae_proj_directory_name</option>
+            <option value="((ae_proj_directory_parent_name))">ae_proj_directory_parent_name</option>
+            <option value="((ae_proj_name))">ae_proj_name</option>
+            <option value="((ae_proj_date))">ae_proj_date</option>
+            <option value="((ae_comp_name))">ae_comp_name</option>
+            <option value="((ae_comp_folder))">ae_comp_folder</option>
+          </select>
+        <span contenteditable="false" class="storageVariableText"></span>
+        <span contenteditable="false" class="delete">x</span>
+      </span>
+
+
+      <span class="sortable">
+        <span contenteditable="true" class="customText"></span>
+        <span contenteditable="false" class="delete">x</span>
+      </span>
+
+    </div>
+    <div id="cloned-slides">
+    </div>
+
+    <div id="pathResult">
+
     </div>
 
   </main>
@@ -23,6 +61,8 @@
 
   <!-- 3) Add your script dependencies here, including CEP's CSInterface.js library -->
   <script type="text/javascript" src="js/lib/CSInterface.js"></script>
+  <script type="text/javascript" src="js/lib/packery.js"></script>
+  <script type="text/javascript" src="js/lib/draggabilly.js"></script>
   <script type="text/javascript" src="js/settings.js"></script>
 </body>
 

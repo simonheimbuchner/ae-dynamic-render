@@ -19,6 +19,7 @@ parseConfigData.prototype.establishStorage = function( ConfigData ) {
       this.addToStorage( "ae_proj_directory_parent_parent_name", app.project.file.parent.parent.parent.name );
       this.addToStorage( "ae_proj_name", app.project.file.name.replace( ".aep", "" ) );
       this.addToStorage( "ae_comp_name", app.project.activeItem.name );
+      this.addToStorage( "ae_comp_folder", app.project.activeItem.parentFolder.name );
 
       // get date formats specified in config
       // outputs look like: "YY-MM-DD"
@@ -205,7 +206,7 @@ formatConfigData.prototype.forRenderQueue = function( ConfigData ) {
 
 formatConfigData.prototype.forSettings = function( ConfigData, configFile ) {
       var ConfigDataOutput = new Object();
-      alert(JSON.stringify(ConfigData))
+    //  alert(JSON.stringify(ConfigData))
       ConfigDataOutput[ "configFilePath" ] = configFile.fsName;
       return ConfigDataOutput;
 
@@ -293,6 +294,7 @@ getConfigFile.prototype.run = function() {
       // return (success): config file, type file
       // return (failure):   Error()
       var configFile = this.getFile( aeProjPath );
+
 
       return configFile;
 }
