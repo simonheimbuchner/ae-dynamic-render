@@ -25,12 +25,16 @@ csInterface.addEventListener( "com.dynamicrender.displaySettings", function( evt
 
 
       var storageVariables = ConfigData[ "storageVariables" ];
-      var htmlPathAssemble = document.getElementById( "pathAssemble" );
-      var htmlSpanDeleteX = document.createElement( "span" );
-      htmlSpanDeleteX.className = "delete";
-      htmlSpanDeleteX.appendChild( document.createTextNode( "x" ) )
 
       for ( i = 0; i < rawConfigDir.length; i++ ) {
+
+            // create Delete-Button
+            var htmlPathAssemble = document.getElementById( "pathAssemble" );
+            var htmlSpanDeleteX = document.createElement( "span" );
+            htmlSpanDeleteX.className = "delete";
+            htmlSpanDeleteX.appendChild( document.createTextNode( "x" ) );
+
+
             // set up storageVariable html
             if ( rawConfigDir[ i ].match( regex ) ) {
                   var htmlSpan = document.createElement( "span" );
@@ -56,8 +60,8 @@ csInterface.addEventListener( "com.dynamicrender.displaySettings", function( evt
                   var htmlSpan = document.createElement( "span" );
                   htmlSpan.className = "sortable";
                   var htmlCustomText = document.createElement( "span" );
-                  //htmlCustomText.contenteditable = true;
                   htmlCustomText.className = "customText";
+                  htmlCustomText.contentEditable = "true";
                   var htmlTextNode = document.createTextNode( rawConfigDir[ i ] )
                   htmlCustomText.appendChild( htmlTextNode );
 
@@ -70,17 +74,19 @@ csInterface.addEventListener( "com.dynamicrender.displaySettings", function( evt
 
 } );
 
-// open settings Window
 csInterface.evalScript( "openSettingsWindow()" );
 
-$('select').change(function(){
-  alert("f")
-  var text = $(this).find('option:selected').text()
-  var $aux = $('<select/>').append($('<option/>').text(text))
-  $(this).after($aux)
-  $(this).width($aux.width())
-  $aux.remove()
-}).change()
+$( document ).ready( function() {
+      // open settings Window
+      $( 'select' ).change( function() {
+            var text = $( this ).find( 'option:selected' ).text()
+            var $aux = $( '<select/>' ).append( $( '<option/>' ).text( text ) )
+            $( this ).after( $aux )
+            $( this ).width( $aux.width() + 35 )
+            $aux.remove()
+      } ).change()
+
+} )
 
 /*
 

@@ -4,7 +4,7 @@
 
 #include "vendor/json.js"; // json library, includes json.parse(), json.stringify(), ...
 
-
+#include "vendor/polyfills.js";
 
 #include "util/utils.js";
 
